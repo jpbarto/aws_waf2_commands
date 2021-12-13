@@ -1,0 +1,52 @@
+{
+  "Name": "my-acl-name",
+  "Scope": "REGIONAL",
+    "DefaultAction": {
+    "Allow": {
+      "CustomRequestHandling": {
+        "InsertHeaders": [
+          {
+            "Name": "ACLHEADERNAME",
+            "Value": "1"
+          }
+        ]
+      }
+    }
+  },
+  "Rules": [
+    {
+      "Name": "AWS-AWSManagedRulesCommonRuleSet",
+      "Priority": 0,
+      "Statement": {
+        "ManagedRuleGroupStatement": {
+          "VendorName": "AWS",
+          "Name": "AWSManagedRulesCommonRuleSet",
+          "ExcludedRules": [
+            {
+              "Name": "NoUserAgent_HEADER"
+            }
+          ]
+        }
+      },
+      "OverrideAction": {
+        "None": {}
+      },
+      "VisibilityConfig": {
+        "SampledRequestsEnabled": true,
+        "CloudWatchMetricsEnabled": true,
+        "MetricName": "AWS-AWSManagedRulesCommonRuleSet"
+      }
+    }
+  ],
+  "VisibilityConfig": {
+    "SampledRequestsEnabled": true,
+    "CloudWatchMetricsEnabled": true,
+    "MetricName": "my-acl-name-cw-metric"
+  },
+  "Tags": [
+    {
+      "Key": "tag-name",
+      "Value": "tag-value"
+    }
+  ]
+}
